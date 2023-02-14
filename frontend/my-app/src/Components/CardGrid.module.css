@@ -1,0 +1,46 @@
+.main {
+  border: 2px solid red;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 10px;
+}
+
+.child {
+  border: 2px solid rgb(9, 255, 0);
+  width: 90%;
+  height: 300px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 425px) {
+  .main {
+    border: 2px solid red;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    text-align: center;
+    gap: 10px;
+  }
+  .child {
+    border: 2px solid rgb(9, 255, 0);
+    width: 90%;
+    height: 300px;
+    margin: auto;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 768px) {
+  #main {
+    border: 2px solid red;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    gap: 10px;
+  }
+  .child {
+    border: 2px solid rgb(9, 255, 0);
+    width: 90%;
+    height: 300px;
+    margin: auto;
+  }
+}
