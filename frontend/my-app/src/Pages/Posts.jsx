@@ -3,7 +3,7 @@ import {
     CardBody,
     CardFooter,
     CardHeader,
-  Heading,
+    Heading,
     Img,
     SimpleGrid,
    

@@ -34,11 +34,7 @@ function CartSinglePage() {
   }, [id]);
 
  
-
- 
-
-
-  const handleAddToCart = () =>{
+const handleAddToCart = () =>{
     if(isAuth){
     cartPostData(proData).then((res)=>{
         console.log(res.data.message , "----in addpost comp--------");

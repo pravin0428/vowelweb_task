@@ -95,7 +95,7 @@ import Cart from "../Pages/Cart";
                     <Link to="/cart" >Cart</Link>
                     </MenuItem>
 
-                    <MenuItem>Account Settings</MenuItem>
+                    <MenuItem> <Link to="signup" >Signup</Link> </MenuItem>
                     <MenuItem><Link to={isAuth ?  "/" : "/login"} >{isAuth ? "Logout" : "Login"}</Link></MenuItem>
                   </MenuList>
                 </Menu>

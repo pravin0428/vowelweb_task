@@ -20,7 +20,7 @@ import {
       useEffect(() => {
         getAllPosts()
           .then((res) => {
-          //    console.log(res.data,"in the post-------**------")
+      console.log(res.data,"in the post-------**------")
             setData(res.data.data);
           })
           .catch((err) => {
