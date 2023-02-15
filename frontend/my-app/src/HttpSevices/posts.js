@@ -5,6 +5,10 @@ export const getAllPosts = () => {
   return axios.get("http://localhost:8080/posts");
 };
 
+export const getCartData = () => {
+  return axios.get("http://localhost:8080/cart");
+};
+
 export const getPostsDetailsById = (id) => {
   // console.log(id , "******");
   return axios.get(`http://localhost:8080/posts/${id}`);
@@ -53,4 +57,9 @@ export const putDataEdit  = async(id , formData) =>{
 export const deletePost = (id) => {
   console.log(id);
   return axios.delete(`http://localhost:8080/posts/${id}`);
+};
+
+export const deleteCartData = (id) => {
+  console.log(id);
+  return axios.delete(`http://localhost:8080/cart/${id}`);
 };

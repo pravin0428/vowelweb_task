@@ -5,10 +5,7 @@ const ProductModel = require("../Schema/CartSchema");
   const { validatePost } = require("../Validator/postValidator");
 const app = express();
 app.use(express.json());
-
-// app.get("/" , (req , res)=>{
-//     res.send("hi bro")
-// })
+ 
 
 app.get("/", async (req, res) => {
   // console.log((ProductModel).find())
@@ -18,13 +15,20 @@ app.get("/", async (req, res) => {
 });
 
  
-//post request : post data in database
 
 app.post("/", async (req, res) => {
-  
+ 
   const { body } = req;
     console.log(body)
- 
+    let id = body._id
+
+    let existingUser = await ProductModel.findOne({id}) 
+    console.log(existingUser , "alllllredy have")
+    if(existingUser){
+      return  res.send({message:"This product alredy exist in cart"}).status(200)
+   }
+
+  //  so now to post our data to the server we have to make the new data object and the we have post it
   console.log({ ...body });
   const newPost = new ProductModel({ ...body })
   console.log(newPost,"-----------") 
@@ -36,7 +40,6 @@ app.post("/", async (req, res) => {
   } 
    
 });
-
 
 //delete req
 

@@ -1,9 +1,11 @@
 import {
   Box,
+ useDisclosure,
  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
  
 import SingleProCard from "../Components/SingleProCard";
@@ -12,11 +14,14 @@ import { cartPostData, getPostsDetailsById } from "../HttpSevices/posts";
 function CartSinglePage() {
   const [proData, setProData] = useState({});
   
- 
+  const { isAuth, loading, error, token , role , email } = useSelector((store) => store.auth);
   const { id } = useParams();
    console.log(id , "|||");
    const toast = useToast();
    const navigate = useNavigate();
+   
+ 
+   
   useEffect(() => {
     getPostsDetailsById(id)
       .then((res) => {
@@ -34,32 +39,54 @@ function CartSinglePage() {
 
 
   const handleAddToCart = () =>{
-      cartPostData(proData).then((res)=>{
-      console.log(res , "----in addpost comp--------");
-     if(proData.title !== "" ||  proData.imageFileSet !== "" || proData.body !== "" ||  proData.imageFileSet !== "" ){
+    if(isAuth){
+    cartPostData(proData).then((res)=>{
+        console.log(res.data.message , "----in addpost comp--------");
+       
+        if(res.data.message === "This product alredy exist in cart"){
+          toast({
+            position: "bottom-right",
+            render: () => (
+              <Box color="white" p={3} bg="orange">
+                 {res.data.message}
+              </Box>
+              
+            ),
+          })
+         }else{
+          toast({
+            position: "bottom-right",
+            render: () => (
+              <Box color="white" p={3} bg="blue.500">
+                Product added to cart
+              </Box>
+            ),
+          })
+         }
+         navigate("/cart")
+      
+    }).catch((err) => {
+        console.log(err.response.data);
+             toast({
+            position: "top",
+            render: () => (
+              <Box color="white" p={3} bg="orange">
+               {err.response.data}
+              </Box>
+            ),
+          });
+      })
+    }else{
       toast({
         position: "bottom-right",
         render: () => (
-          <Box color="white" p={3} bg="blue.500">
-            Product added to cart
+          <Box color="white" p={3} bg="orange">
+             Please login to add the product in cart
           </Box>
         ),
-      });
-      navigate("/");
-     }
-      
-    }).catch((err) => {
-      console.log(err.response.data);
-           toast({
-          position: "top",
-          render: () => (
-            <Box color="white" p={3} bg="orange">
-             {err.response.data}
-            </Box>
-          ),
-        });
-    })
-    
+      })
+      navigate(`/login/${id}`)
+    }
   }
 
   return (
@@ -72,6 +99,7 @@ function CartSinglePage() {
         id={proData._id}
         buttonText="Add To Cart"
         handleCartClick={handleAddToCart}
+      
       />
     </>
   );

@@ -19,15 +19,15 @@ import ButtonComp from "./ButtonComp";
 import PostAndAddPostLink from "./PostAndAddPostLink";
 import MenuSmallScreen from "./MenuSmallScreen";
 
-function Nav() {
+function AdminNavbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Link to="/">
-            <Box>Logo</Box>
+          <Link to="/posts">
+            <Box  width="40px" height="30px" > <img src="ecom-logo.png" alt="" /> </Box>
           </Link>
 
           <Flex alignItems={"center"}>
@@ -84,4 +84,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default AdminNavbar;

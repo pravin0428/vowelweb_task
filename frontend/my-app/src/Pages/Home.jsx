@@ -3,7 +3,6 @@ import {
       CardBody,
       CardFooter,
       CardHeader,
-      Center,
       Heading,
       Img,
       SimpleGrid,

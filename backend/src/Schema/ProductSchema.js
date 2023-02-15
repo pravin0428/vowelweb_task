@@ -15,6 +15,13 @@ const ProductSchema = new Schema({
       },
       publishedAt : {
         type : String
+      },
+      price : {
+        type : Number
+      },
+      quantity : {
+        type : Number,
+        default:1
       }
 })
 

@@ -24,31 +24,26 @@ const initState = {
   title: "",
   imageFileSet: "",
   body: "",
-  publishedAt : ""
+  publishedAt : "",
+  price : null,
+  quantity : 1
 };
 
 function AddPost() {
   const [formData, setFormData] = useState(initState);
-   console.log(formData,"--------))))-------");
+  //  console.log(formData,"--------))))-------");
   const navigate = useNavigate();
   const toast = useToast();
 
   const handleChange = (e) => {
-    //validation
-    // const { error } = joi.validate([e.target.name], schema[e.target.name], {
-    //   abortEarly: true,
-    // });
-    // console.log("re----re", error);
-    // !error?error[target.name] = "" : error[target.name] = error.details[0].message
-    // console.log(e.target.name);
-    // console.log(e.target.value);
+ 
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     postData(formData).then((res)=>{
-      console.log(res , "----in addpost comp--------");
+      // console.log(res , "----in addpost comp--------");
      if(formData.title !== "" ||  formData.imageFileSet !== "" || formData.body !== "" ||  formData.imageFileSet !== "" ){
       toast({
         position: "bottom-right",
@@ -74,13 +69,7 @@ function AddPost() {
     })
   };
 
-  //now will goin to validate our form inputs using joi-browser
-
-  // const schema = {
-  //   title: joi.string().required().label("Title").min(5),
-  //   imageFileSet: joi.string().required().label("imageFileSet"),
-  //   body: joi.string().required().label("body"),
-  // };
+ 
 
   return (
     <Box
@@ -96,16 +85,7 @@ function AddPost() {
      
      height="auto"
      justifyContent="space-between"
-    //     border={{
-    //   base: "4px solid teal",
-    //   sm: "2px solid orange",
-    //   md: "2px solid black",
-    //   lg: "2px solid blue",
-    //   xl: "2px solid green",
-    //   "2xl": "2px solid yellow",
-    // }}
-    
-  
+ 
     >
       <Box 
       // border={ "4px solid teal"}  
@@ -166,13 +146,7 @@ function AddPost() {
             value={formData.imageFileSet}
             onChange={(e) => handleChange(e)}
           />
-          {/* <br /> */}
-          {/* <Heading textAlign="center" >----or option-----</Heading>
-            <FileBase64
-              onDone={(e) => {
-                formData.imageFileSet = e.base64;
-              }}
-            /> */}
+   
           </Box>
 
           <FormLabel>description</FormLabel>
@@ -186,8 +160,21 @@ function AddPost() {
               onChange={(e) => handleChange(e)}
             />
           </Editable>
+
+          <FormLabel>Price</FormLabel>
+          <Input
+            type="number"
+            border="2px solid black"
+            placeholder="Enter Price Of Product"
+            name="price"
+            value={formData.price}
+            onChange={(e) => handleChange(e)}
+          />
+
           <br />
           <br />
+
+
           <Button
           w="200px"
             color={"white"}

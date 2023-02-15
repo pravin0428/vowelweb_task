@@ -1,13 +1,27 @@
+import { useSelector } from "react-redux";
 import "./App.css";
-import Nav from "./Components/Navbar";
+import AdminNavbar from "./Components/AdminNavbar";
+import UserNavbar from "./Components/UserNavbar";
 import AllRoutes from "./Pages/AllRoutes";
+import Cart from "./Pages/Cart";
  
 
 function App() {
+
+  const { isAuth, loading, error, token , role } = useSelector((store) => store.auth);
+
+
+
   return (
     <div className="App">
-      <Nav />
-      <AllRoutes />
+
+{role === "Admin" ? (
+   
+   <AdminNavbar />
+) : (
+  <UserNavbar/> 
+)}
+<AllRoutes />
     </div>
   );
 }

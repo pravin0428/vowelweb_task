@@ -7,10 +7,12 @@ import {
   Text,
   Button,
   Image,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-export default function SingleProCard({ title, proImage, body, id ,  buttonText , handleCartClick }) {
+export default function SingleProCard({ title, proImage, body, id ,  buttonText , handleCartClick   }) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Container maxW={"7xl"}
     //  border="4px solid green"
@@ -81,6 +83,7 @@ export default function SingleProCard({ title, proImage, body, id ,  buttonText 
               _hover={{ bg: "red.500" }}
               
             onClick={handleCartClick}
+        
             >
               { buttonText}
             </Button>
