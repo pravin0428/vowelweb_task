@@ -14,10 +14,8 @@ import {
 
 import React from "react";
 import { useState } from "react";
-// import joi from "joi-browser";
 import { postData } from "../HttpSevices/posts";
 import { useNavigate } from "react-router-dom";
-// import FileBase64 from "react-file-base64";
 import ToastComp from "../Components/TostComp";
 
 const initState = {
