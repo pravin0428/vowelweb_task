@@ -104,18 +104,20 @@ export default function SingleProCard({ title, proImage, body, id ,  buttonText 
         >
           <Box
             position={"relative"}
-            height={"300px"}
+            height={"500px"}
+            width="500px"
             rounded={"2xl"}
             boxShadow={"2xl"}
-            width={"full"}
             overflow={"hidden"}
           >
             <Image
               alt={"Hero Image"}
               fit={"cover"}
               align={"center"}
-              w={"100%"}
-              h={"100%"}
+              // w={"100%"}
+              // h={"100%"}
+              w="500px"
+              height="500px"
               src={proImage}
             />
           </Box>
