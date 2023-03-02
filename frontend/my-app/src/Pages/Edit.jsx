@@ -26,6 +26,7 @@ import {
 import { useEffect } from "react";
 // import joi from "joi-browser";
 import axios from "axios";
+import AdminNavbar from "../Components/AdminNavbar";
 
 const initState = {
   title: "",
@@ -98,6 +99,9 @@ function Edit() {
   }, [id]);
 
   return (
+    <>
+    <AdminNavbar />
+      
     <Center py={6}>
       <Stack
         borderWidth="1px"
@@ -203,6 +207,7 @@ function Edit() {
         </Stack>
       </Stack>
     </Center>
+    </>
   );
 }
 export default Edit;

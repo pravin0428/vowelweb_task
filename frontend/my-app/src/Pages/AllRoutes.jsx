@@ -10,21 +10,23 @@ import Posts from './Posts'
 import Signup from './Signup'
 import SinglePost from './SinglePost'
 import PrivateRoute from "../Components/PrivateRoute"
-import Payment from './Payment'
+// import Payment from './Payment'
+import Ordermanage from './OrderManage'
 function AllRoutes() {
   return (
     <Routes>
         <Route path="/" element={< Home/>} />
+        <Route path="/cart" element={ < Cart />  } />
         <Route path="/signup" element={< Signup/>} />
         <Route path="/login" element={< Login/>} />
-        <Route path="/login/:id" element={< Login/>} />
+        <Route path="/user/:id" element={<CartSinglePage />} />
+        {/* <Route path="/payment" element={ < Payment />} /> */}
+        {/* <Route path="/login/:id" element={< Login/>} /> */}
         <Route path="/posts" element={< Posts />} />
         <Route path="/posts/:id" element={< SinglePost />} />
-        <Route path="/user/:id" element={<CartSinglePage />} />
         <Route path="/posts/:id/edit" element={< Edit />} />  
         <Route path="/addpost" element={< AddPost />} />
-        <Route path="/cart" element={ <PrivateRoute>< Cart /></PrivateRoute>  } />
-        <Route path="/payment" element={ < Payment />} />
+        <Route path="/posts/order" element={<Ordermanage/>}></Route>
     </Routes>
   )
 }

@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import UserNavbar from "../Components/UserNavbar";
 import { registerUser } from "../redux/auth/action";
 
 function Signup() {
@@ -19,14 +20,23 @@ function Signup() {
     email: "",
     password: "",
     // username: "",
-  });
+  }); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formData);
     dispatch(registerUser(formData));
+    // if(isRegister){
+    //   navigate("/login");
+    // }
   } 
   useEffect(() => {
     if (isRegister) {
@@ -35,10 +45,6 @@ function Signup() {
    
   }, [isRegister]);
 
-  function handleChange(e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-
   if (loading) {
     return <div>....Loading</div>;
   } else if (error) {
@@ -46,6 +52,7 @@ function Signup() {
   }
   return (
     <>
+       <UserNavbar/>
       <Flex minH={"100vh"} align={"center"} justify={"center"} bg="gray.50">
         <Stack
           borderRadius="10px"

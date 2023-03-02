@@ -12,15 +12,38 @@ import {
   Stack,
   useColorMode,
   Center,
+  useToast,
+ 
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ButtonComp from "./ButtonComp";
 import PostAndAddPostLink from "./PostAndAddPostLink";
 import MenuSmallScreen from "./MenuSmallScreen";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function AdminNavbar() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isAuth, loading, error, token , role } = useSelector((store) => store.auth);
+  const [logout , setLogot] = useState(role)
+  const [authStaus , SetAuthStaus] = useState(isAuth)
+  const navigate = useNavigate()
+  const toast = useToast()
+  const handleLogout = () =>{
+    setLogot("User")
+    SetAuthStaus(false)
+    toast({
+      position: "bottom-right",
+      render: () => (
+        <Box color="white" p={3} bg="orange">
+           "Logout success"
+        </Box>
+    ),
+    })
+    navigate("/")
+ 
+  }
 
   return (
     <>
@@ -31,10 +54,13 @@ function AdminNavbar() {
           </Link>
 
           <Flex alignItems={"center"}>
-            <Stack direction={"row"} spacing={7}>
+            <Stack direction={"row"} spacing={7} 
+            // border="1px solid red" 
+            >
               {/* add post button */}
 
               <PostAndAddPostLink />
+
               <MenuSmallScreen />
               <Button onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -73,7 +99,7 @@ function AdminNavbar() {
                     <PostAndAddPostLink />
                   </MenuItem>
                   <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  <MenuItem as="Button" onClick={handleLogout}  >Logout</MenuItem>
                 </MenuList>
               </Menu>
             </Stack>

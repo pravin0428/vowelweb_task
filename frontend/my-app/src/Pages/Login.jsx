@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { loginUser } from "../redux/auth/action";
+import UserNavbar from "../Components/UserNavbar";
 
 const Login = () => {
   const { isAuth, loading, error, token , role } = useSelector((store) => store.auth);
@@ -32,12 +33,12 @@ const Login = () => {
   useEffect(() => {
     if (isAuth) {
       if(role === "User"){
-         navigate(`/user/${id}`);
+         navigate("/");
       }
-      else{
-        navigate("/");
+      else if(role === "Admin"){
+        navigate("/posts");
       }
-    }
+    } 
   }, [isAuth , role]);
 
   function handleChange(e) {
@@ -50,6 +51,7 @@ const Login = () => {
   }
   return (
     <>
+    <UserNavbar/>
       <Flex minH={"100vh"} align={"center"} justify={"center"}>
         <Stack maxW={"lg"} marginTop="-4%">
           <Box rounded={"lg"} bg={"white"} boxShadow={"xl"} p={10}>
@@ -97,7 +99,7 @@ const Login = () => {
               </Stack>
             </Stack>
             <br />
-            <Link to="/">Go to signup..</Link>
+            <Link to="/signup">Go to signup..</Link>
           </Box>
         </Stack>
       </Flex>

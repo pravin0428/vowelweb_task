@@ -71,8 +71,9 @@ function SinglePost() {
         key={proData._id}
         title={proData.title}
         proImage={proData.imageFileSet}
-        body={proData.description}
+        body={proData.publishedAt}
         id={proData._id}
+        price={proData.price}
         buttonText="Edit Product Information"
       />
     </>

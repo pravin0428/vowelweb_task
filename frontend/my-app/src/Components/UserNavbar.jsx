@@ -22,26 +22,48 @@ import {
 import CartDrawer from "./CartDrawer";
 import { useSelector } from "react-redux";
 import Cart from "../Pages/Cart";
+import { useState } from "react";
   
   function UserNavbar() {
 
-    const { colorMode, toggleColorMode } = useColorMode();
-   const { isAuth, loading, error, token , role } = useSelector((store) => store.auth);
+   const { colorMode, toggleColorMode } = useColorMode();
+   const { isAuth, loading, error, token , role , userEmail } = useSelector((store) => store.auth);
    const toast = useToast()
    const navigate = useNavigate()
-  //  const handleSignout = () =>{
-  //   // isAuth=false,
-  //   // token = null
-  //   toast({
-  //     position: "bottom-right",
-  //     render: () => (
-  //       <Box color="white" p={3} bg="orange">
-  //          logout success
-  //       </Box>
-  //     ),
-  //   })
-  //   navigate("/home")
+   const[isauth , setIsauth] = useState(isAuth)
+
+  //  const handleLogoutUser = () =>{
+      
   //  }
+
+   const handleSignout = () =>{
+    console.log(isauth,"((((&&&))))")
+     if(isauth === false){
+      navigate("/login")
+      toast({
+        position: "bottom-right",
+        render: () => (
+          <Box color="white" p={3} bg="orange">
+             Loading Login Page
+          </Box>
+        ),
+      })
+     
+         
+     }
+     else{
+      console.log(isauth,"((((******))))")
+      toast({
+        position: "bottom-right",
+        render: () => (
+          <Box color="white" p={3} bg="orange">
+             logout success
+          </Box>
+        ),
+      })
+      navigate("/")
+     }
+   }
 
     return (
       <>
@@ -86,17 +108,15 @@ import Cart from "../Pages/Cart";
                     </Center>
                     <br />
                     <Center>
-                      <p>Username</p>
+                      <p> {userEmail} </p>
                     </Center>
                     <br />
                     <MenuDivider />
   
-                    <MenuItem>
-                    <Link to="/cart" >Cart</Link>
-                    </MenuItem>
+                    <MenuItem><Link to="/cart" >Cart</Link></MenuItem>
+                    <MenuItem> <Link to="/signup" >Signup</Link> </MenuItem>
+                    <MenuItem><Button onClick={handleSignout}>{isAuth ? "Logout" : "Login"}</Button></MenuItem>
 
-                    <MenuItem> <Link to="signup" >Signup</Link> </MenuItem>
-                    <MenuItem><Link to={isAuth ?  "/" : "/login"} >{isAuth ? "Logout" : "Login"}</Link></MenuItem>
                   </MenuList>
                 </Menu>
               </Stack>

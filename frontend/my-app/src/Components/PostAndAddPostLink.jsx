@@ -37,6 +37,10 @@ function PostAndAddPostLink() {
       <Link to="/addpost">
         <ButtonComp name="Add Post" />
       </Link>
+      <Link to="/posts/order">
+        <ButtonComp name="Manage Order" />
+      </Link>
+       
     </Box>
   );
 }

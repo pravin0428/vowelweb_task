@@ -14,14 +14,8 @@ function App() {
 
   return (
     <div className="App">
-
-{role === "Admin" ? (
-   
-   <AdminNavbar />
-) : (
-  <UserNavbar/> 
-)}
-<AllRoutes />
+ 
+     <AllRoutes />
     </div>
   );
 }

@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-export default function SingleProCard({ title, proImage, body, id ,  buttonText , handleCartClick   }) {
+export default function SingleProCard({ title, proImage, body, id ,  buttonText , handleCartClick ,price  }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Container maxW={"7xl"}
@@ -50,7 +50,9 @@ export default function SingleProCard({ title, proImage, body, id ,  buttonText 
               {title}
             </Text>
           </Heading>
+          <p>{`Price : ${price}`}</p>
           <Text color={"gray.500"}>description : {body}</Text>
+          
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}

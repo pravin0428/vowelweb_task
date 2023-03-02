@@ -11,6 +11,7 @@ import {
   import React from "react";
   import { useState ,useEffect } from "react";
   import { Link } from "react-router-dom";
+import AdminNavbar from "../Components/AdminNavbar";
   import ButtonComp from "../Components/ButtonComp";
   import { getAllPosts } from "../HttpSevices/posts";
   
@@ -29,6 +30,9 @@ import {
     }, []);
   
     return (
+      <>
+         <AdminNavbar />
+     
       <SimpleGrid
         spacing={4}
         // border="3px solid"
@@ -64,6 +68,7 @@ import {
             </div>
           ))}
       </SimpleGrid>
+      </>
     )
   }
   

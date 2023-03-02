@@ -9,7 +9,7 @@ export const registerUser = (creds) => async (dispatch) => {
       creds
     );
     dispatch({ type: REGISTER_SUCCESS, payload: res.data.user });
-    console.log(res.data , "__inside action-------");
+    // console.log(res.data , "__inside action-------");
     return res.data;
   }catch (err) {
     dispatch({type:REGISTER_ERROR})
@@ -22,7 +22,7 @@ export const loginUser = (creds) => async (dispatch) => {
   try {
     let res = await axios.post("https://data-vowel-web.onrender.com/login",creds);
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-    console.log(res.data.token , "*****login data action.js******")
+    // console.log(res.data.token , "*****login data action.js******")
     return res.data;
   } catch (err) {
     dispatch({type:LOGIN_ERROR})

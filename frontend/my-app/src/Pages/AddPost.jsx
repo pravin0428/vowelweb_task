@@ -17,6 +17,7 @@ import { useState } from "react";
 import { postData } from "../HttpSevices/posts";
 import { useNavigate } from "react-router-dom";
 import ToastComp from "../Components/TostComp";
+import AdminNavbar from "../Components/AdminNavbar";
 
 const initState = {
   title: "",
@@ -70,6 +71,9 @@ function AddPost() {
  
 
   return (
+    <>
+     <AdminNavbar/> 
+ 
     <Box
     backgroundImage={"https://th.bing.com/th/id/R.39bd85ccce948909803868621a2cc050?rik=Sm0Vu8hXHf5mJw&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f06%2fHD-Nature-Backgrounds-Images-Download.jpg&ehk=BUfEe8Tl1kYxxNDDlFxMCRKKjwKA64sKN7i%2biRuJ6r4%3d&risl=1&pid=ImgRaw&r=0"}
     bgSize="100%"
@@ -188,6 +192,7 @@ function AddPost() {
       </Box>
     </Container>
     </Box>
+    </>
   );
 }
 

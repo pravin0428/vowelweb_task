@@ -12,23 +12,34 @@ import {
     import { useState ,useEffect } from "react";
     import { Link } from "react-router-dom";
     import ButtonComp from "../Components/ButtonComp";
+import UserNavbar from "../Components/UserNavbar";
     import { getAllPosts } from "../HttpSevices/posts";
     
     function Home() {
       const [data, setData] = useState([]);
-     
+     const [loading , setLoading] = useState(false)
       useEffect(() => {
+        setLoading(true)
         getAllPosts()
           .then((res) => {
       console.log(res.data,"in the post-------**------")
+      setLoading(false)
             setData(res.data.data);
           })
           .catch((err) => {
+            setLoading(false)
             console.log(err.message);
           });
       }, []);
+
+      if(loading){
+        return <h1>Loading....</h1>
+      }
     
       return (
+        <>
+        <UserNavbar/>
+         
         <SimpleGrid
           spacing={4}
           // border="3px solid"
@@ -64,6 +75,7 @@ import {
               </div>
             ))}
         </SimpleGrid>
+        </>
       )
     }
     
