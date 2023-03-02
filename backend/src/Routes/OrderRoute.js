@@ -1,7 +1,7 @@
 const express=require("express")
 const app=express.Router()
-const orderModel = require("../Schema/orderModel")
-const cartModel = require("../Schema/cartModel")
+const orderModel = require("../Schema/OrderModel")
+const cartModel = require("../Schema/CartModel")
 app.post("/post", async(req , res)=>{
     // const {title,image,price,count}=req.body
   
